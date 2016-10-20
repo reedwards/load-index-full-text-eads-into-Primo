@@ -1,0 +1,849 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<!-- Purpose: Getty Research Institute's Primo Normalization Rules for Loading EADs
+
+Program: rules.xml
+Author: Ryan Edwards
+Created: 2015/09/30
+
+Comments:
+Getty Research Institute's Primo Normalization Rules for Loading EADs.
+You may be able to re-create or import these normalization rules into your Primo 
+Back Office server for your load pipe, using the Import Primo Configuration Tool, but you should do 
+so carefully and probably should open a case with ExLibris Support to help you 
+with this task.
+
+-->
+
+<ConversionRules
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="/exlibris/primo/p4_1/ng/primo/home/profile/publish/publish/production//conf/nm_rules.xsd" version="2">
+
+<rule version="1" type="condition">
+	<source>
+		<sourceTag>eadheader/eadid/@identifier</sourceTag>
+	</source>
+	<action>
+		<conditionCode>84861845</conditionCode>
+		<routine code="StartsWithString">99</routine>
+	</action>
+</rule>
+
+<rule version="1" type="condition">
+	<source>
+		<sourceTag>archdesc/did/repository/address/addressline</sourceTag>
+	</source>
+	<action>
+		<conditionCode>81457757</conditionCode>
+		<routine code="CheckStringExists">Institutional Archives</routine>
+	</action>
+</rule>
+
+<rule version="1" type="condition">
+	<source>
+		<sourceTag>archdesc/did/repository/address/addressline</sourceTag>
+	</source>
+	<action>
+		<conditionCode>81457759</conditionCode>
+		<routine code="CheckStringExists">Special Collections</routine>
+	</action>
+</rule>
+
+<rule version="1" type="condition">
+	<source>
+		<sourceTag>eadheader/eadid/@identifier</sourceTag>
+	</source>
+	<action>
+		<conditionCode>84861730</conditionCode>
+		<routine code="StartsWithString">99</routine>
+	</action>
+</rule>
+
+<rule version="1" rulegroup="control_sourcerecordid">
+	<target>
+		<sectionTag>control</sectionTag>
+		<targetTag>sourcerecordid</targetTag>
+	</target>
+	<source>
+		<tagField>global</tagField>
+	</source>
+	<action>
+		<routine code="GetRecordContext">sourceRecordId</routine>
+		<targetFlag  flag="new"/>
+	</action>
+</rule>
+
+<rule version="2" rulegroup="control_sourceid">
+	<target>
+		<sectionTag>control</sectionTag>
+		<targetTag>sourceid</targetTag>
+	</target>
+	<source type="config">
+		<valueSource>nmrules/control_sourceid</valueSource>
+	</source>
+	<action>
+		<routine code="CopyAsIs"/>
+		<targetFlag  flag="new"/>
+	</action>
+</rule>
+
+<rule version="2" rulegroup="control_recordid">
+	<target>
+		<sectionTag>control</sectionTag>
+		<targetTag>recordid</targetTag>
+	</target>
+	<source type="config">
+		<valueSource>nmrules/control_sourceid</valueSource>
+	</source>
+	<action>
+		<routine code="CopyAsIs"/>
+		<targetFlag  flag="new"/>
+	</action>
+</rule>
+
+<rule version="2" rulegroup="control_recordid">
+	<target>
+		<sectionTag>control</sectionTag>
+		<targetTag>recordid</targetTag>
+	</target>
+	<source type="pnx">
+		<valueSource>control/sourcerecordid</valueSource>
+	</source>
+	<action>
+		<routine code="CopyAsIs"/>
+		<targetFlag  flag="merge"/>
+		<tagDelim/>
+	</action>
+</rule>
+
+<rule version="1" rulegroup="control_sourcesystem">
+	<target>
+		<sectionTag>control</sectionTag>
+		<targetTag>sourcesystem</targetTag>
+	</target>
+	<source type="config">
+		<valueSource>nmrules/control_sourcesystem</valueSource>
+	</source>
+	<action>
+		<routine code="CopyAsIs"/>
+		<targetFlag  flag="new"/>
+	</action>
+</rule>
+
+<rule version="1" changed="true" rulegroup="display_type">
+	<target>
+		<sectionTag>display</sectionTag>
+		<targetTag>type</targetTag>
+	</target>
+	<source type="constant">
+		<valueSource>finding_aid</valueSource>
+	</source>
+	<action>
+		<routine code="CopyAsIs"/>
+		<targetFlag  flag="new"/>
+	</action>
+</rule>
+
+<rule version="1" changed="true">
+	<target>
+		<sectionTag>display</sectionTag>
+		<targetTag>title</targetTag>
+	</target>
+	<source>
+		<sourceTag>archdesc/did/unittitle</sourceTag>
+	</source>
+	<action>
+		<routine code="CopyAsIs"/>
+		<targetFlag  flag="merge"/>
+		<tagDelim endSpace="true">;</tagDelim>
+	</action>
+</rule>
+
+<rule version="1" changed="true">
+	<target>
+		<sectionTag>display</sectionTag>
+		<targetTag>title</targetTag>
+	</target>
+	<source>
+		<sourceTag>eadheader/filedesc/titlestmt/titleproper[1]</sourceTag>
+	</source>
+	<action>
+		<routine code="CopyAsIs"/>
+		<targetFlag  flag="merge"/>
+		<tagDelim endSpace="true">,</tagDelim>
+	</action>
+</rule>
+
+<rule version="1" changed="true">
+	<target>
+		<sectionTag>display</sectionTag>
+		<targetTag>title</targetTag>
+	</target>
+	<source>
+		<sourceTag>archdesc/did/unitdate</sourceTag>
+	</source>
+	<action>
+		<routine code="CopyAsIs"/>
+		<targetFlag  flag="merge"/>
+		<tagDelim endSpace="true">,</tagDelim>
+	</action>
+</rule>
+
+<rule version="1" changed="true" rulegroup="display_creator">
+	<target>
+		<sectionTag>display</sectionTag>
+		<targetTag>creator</targetTag>
+	</target>
+	<source>
+		<sourceTag>archdesc/did/origination/persname</sourceTag>
+	</source>
+	<action>
+		<routine code="CopyAsIs"/>
+		<targetFlag  flag="merge"/>
+		<tagDelim endSpace="true">;</tagDelim>
+	</action>
+</rule>
+
+<rule version="1" changed="true" rulegroup="display_creator">
+	<target>
+		<sectionTag>display</sectionTag>
+		<targetTag>creator</targetTag>
+	</target>
+	<source>
+		<sourceTag>archdesc/did/origination/corpname</sourceTag>
+	</source>
+	<action>
+		<routine code="CopyAsIs"/>
+		<targetFlag  flag="merge"/>
+		<tagDelim endSpace="true">;</tagDelim>
+	</action>
+</rule>
+
+<rule version="1" changed="true" rulegroup="display_creator">
+	<target>
+		<sectionTag>display</sectionTag>
+		<targetTag>creator</targetTag>
+	</target>
+	<source>
+		<sourceTag>archdesc/did/origination/famname</sourceTag>
+	</source>
+	<action>
+		<routine code="CopyAsIs"/>
+		<targetFlag  flag="merge"/>
+		<tagDelim endSpace="true">;</tagDelim>
+	</action>
+</rule>
+
+<rule version="1" changed="true" rulegroup="display_creator">
+	<target>
+		<sectionTag>display</sectionTag>
+		<targetTag>creator</targetTag>
+	</target>
+	<source>
+		<sourceTag>archdesc/did/origination/name</sourceTag>
+	</source>
+	<action>
+		<routine code="CopyAsIs"/>
+		<targetFlag  flag="merge"/>
+		<tagDelim endSpace="true">;</tagDelim>
+	</action>
+</rule>
+
+<rule version="1" disable="true" changed="true" rulegroup="display_creationdate">
+	<target>
+		<sectionTag>display</sectionTag>
+		<targetTag>creationdate</targetTag>
+	</target>
+	<source>
+		<sourceTag>archdesc/did/unitdate</sourceTag>
+	</source>
+	<action>
+		<routine code="CopyAsIs"/>
+		<targetFlag  flag="merge"/>
+		<tagDelim endSpace="true"/>
+	</action>
+</rule>
+
+<rule version="1" changed="true" rulegroup="display_identifier">
+	<target>
+		<sectionTag>display</sectionTag>
+		<targetTag>identifier</targetTag>
+	</target>
+	<source>
+		<sourceTag>archdesc/did/unitid</sourceTag>
+	</source>
+	<action>
+		<routine code="CopyAsIs"/>
+		<targetFlag  flag="merge"/>
+		<tagDelim endSpace="true"/>
+	</action>
+</rule>
+
+<rule version="1" changed="true" rulegroup="display_subject">
+	<target>
+		<sectionTag>display</sectionTag>
+		<targetTag>subject</targetTag>
+	</target>
+	<source>
+		<sourceTag>archdesc/controlaccess//subject</sourceTag>
+	</source>
+	<action>
+		<routine code="CopyAsIs"/>
+		<targetFlag  flag="merge"/>
+		<tagDelim>;</tagDelim>
+	</action>
+</rule>
+
+<rule version="1" changed="true" rulegroup="display_source">
+	<target>
+		<sectionTag>display</sectionTag>
+		<targetTag>source</targetTag>
+	</target>
+	<source type="constant">
+		<valueSource>GRI_EAD</valueSource>
+	</source>
+	<action>
+		<routine code="CopyAsIs"/>
+		<targetFlag  flag="merge"/>
+		<tagDelim endSpace="true">;</tagDelim>
+	</action>
+</rule>
+
+<rule version="1" disable="true" changed="true" rulegroup="display_lds14">
+	<target>
+		<sectionTag>display</sectionTag>
+		<targetTag>lds14</targetTag>
+	</target>
+	<source>
+		<sourceTag>archdesc/did/unitid</sourceTag>
+	</source>
+	<action>
+		<routine code="CopyAsIs"/>
+		<targetFlag  flag="merge"/>
+		<tagDelim endSpace="true"/>
+	</action>
+</rule>
+
+<rule version="1" disable="true" changed="true" rulegroup="display_lds28">
+	<target>
+		<sectionTag>display</sectionTag>
+		<targetTag>lds28</targetTag>
+	</target>
+	<source>
+		<sourceTag>archdesc/did/abstract</sourceTag>
+	</source>
+	<action>
+		<routine code="CopyAsIs"/>
+		<targetFlag  flag="merge"/>
+		<tagDelim endSpace="true"/>
+	</action>
+</rule>
+
+<rule version="1" disable="true" changed="true" rulegroup="display_lds29">
+	<target>
+		<sectionTag>display</sectionTag>
+		<targetTag>lds29</targetTag>
+	</target>
+	<source type="pnx">
+		<valueSource>control/recordid</valueSource>
+	</source>
+	<action>
+		<routine code="ConcatenateBefore">http://primo.getty.edu/GRI:</routine>
+		<targetFlag  flag="new"/>
+	</action>
+</rule>
+
+<rule version="1" changed="true" rulegroup="display_lds44">
+	<target>
+		<sectionTag>display</sectionTag>
+		<targetTag>lds44</targetTag>
+	</target>
+	<source type="constant">
+		<valueSource>Your search term appears in the finding aid for this collection. Click the link on the right to search the full text of the finding aid.</valueSource>
+	</source>
+	<action>
+		<routine code="CopyAsIs"/>
+		<targetFlag  flag="new"/>
+	</action>
+</rule>
+
+<rule version="1" disable="true" changed="true" rulegroup="links_linktorsrc">
+	<target>
+		<sectionTag>links</sectionTag>
+		<targetTag>linktorsrc</targetTag>
+	</target>
+	<source>
+		<sourceTag>archdesc/descgrp/prefercite//p[contains(.,"http")]</sourceTag>
+	</source>
+	<action>
+		<routine code="ConcatenateBefore">$$U</routine>
+		<targetFlag  flag="new"/>
+	</action>
+</rule>
+
+<rule version="1" disable="true" changed="true" rulegroup="links_linktorsrc">
+	<target>
+		<sectionTag>links</sectionTag>
+		<targetTag>linktorsrc</targetTag>
+	</target>
+	<source>
+		<sourceTag>archdesc/did/unittitle</sourceTag>
+	</source>
+	<action>
+		<routine code="ConcatenateBefore">Connect to finding aid for the&amp;nbsp;</routine>
+		<routine code="ConcatenateBefore">$$D</routine>
+		<targetFlag  flag="merge"/>
+		<tagDelim/>
+	</action>
+</rule>
+
+<rule version="1" changed="true" rulegroup="search_title">
+	<target>
+		<sectionTag>search</sectionTag>
+		<targetTag>title</targetTag>
+	</target>
+	<source>
+		<sourceTag>eadheader/filedesc/titlestmt/titleproper</sourceTag>
+	</source>
+	<action>
+		<routine code="CopyAsIs"/>
+		<targetFlag  flag="merge"/>
+		<tagDelim endSpace="true">;</tagDelim>
+	</action>
+</rule>
+
+<rule version="1" changed="true" rulegroup="search_title">
+	<target>
+		<sectionTag>search</sectionTag>
+		<targetTag>title</targetTag>
+	</target>
+	<source>
+		<sourceTag>archdesc/did/unittitle</sourceTag>
+	</source>
+	<action>
+		<routine code="CopyAsIs"/>
+		<targetFlag  flag="merge"/>
+		<tagDelim endSpace="true">;</tagDelim>
+	</action>
+</rule>
+
+<rule version="1" changed="true" rulegroup="search_subject">
+	<target>
+		<sectionTag>search</sectionTag>
+		<targetTag>subject</targetTag>
+	</target>
+	<source>
+		<sourceTag>archdesc/controlaccess//subject</sourceTag>
+	</source>
+	<action>
+		<routine code="CopyAsIs"/>
+		<targetFlag  flag="merge"/>
+		<tagDelim>;</tagDelim>
+	</action>
+</rule>
+
+<rule version="1" changed="true" rulegroup="search_sourceid">
+	<target>
+		<sectionTag>search</sectionTag>
+		<targetTag>sourceid</targetTag>
+	</target>
+	<source type="pnx">
+		<valueSource>control/sourceid</valueSource>
+	</source>
+	<action>
+		<routine code="CopyAsIs"/>
+		<targetFlag  flag="merge"/>
+		<tagDelim endSpace="true">;</tagDelim>
+	</action>
+</rule>
+
+<rule version="1" changed="true" rulegroup="search_recordid">
+	<target>
+		<sectionTag>search</sectionTag>
+		<targetTag>recordid</targetTag>
+	</target>
+	<source type="pnx">
+		<valueSource>control/recordid</valueSource>
+	</source>
+	<action>
+		<routine code="CopyAsIs"/>
+		<targetFlag  flag="merge"/>
+		<tagDelim endSpace="true">;</tagDelim>
+	</action>
+</rule>
+
+<rule version="1" changed="true" rulegroup="search_rsrctype">
+	<target>
+		<sectionTag>search</sectionTag>
+		<targetTag>rsrctype</targetTag>
+	</target>
+	<source type="constant">
+		<valueSource>Finding Aids</valueSource>
+	</source>
+	<action>
+		<routine code="CopyAsIs"/>
+		<targetFlag  flag="merge"/>
+		<tagDelim/>
+	</action>
+</rule>
+
+<rule version="1" changed="true" rulegroup="search_creationdate">
+	<target>
+		<sectionTag>search</sectionTag>
+		<targetTag>creationdate</targetTag>
+	</target>
+	<source>
+		<sourceTag>archdesc/did/unitdate</sourceTag>
+	</source>
+	<action>
+		<routine code="CopyAsIs"/>
+		<targetFlag  flag="merge"/>
+		<tagDelim endSpace="true">;</tagDelim>
+	</action>
+</rule>
+
+<rule version="1" changed="true" rulegroup="search_scope">
+	<target>
+		<sectionTag>search</sectionTag>
+		<targetTag>scope</targetTag>
+	</target>
+	<source type="constant">
+		<valueSource>GETTY_EAD2</valueSource>
+	</source>
+	<action>
+		<routine code="CopyAsIs"/>
+		<targetFlag  flag="merge"/>
+		<tagDelim endSpace="true">;</tagDelim>
+	</action>
+</rule>
+
+<rule version="1" rulegroup="sort_title">
+	<target>
+		<sectionTag>sort</sectionTag>
+		<targetTag>title</targetTag>
+	</target>
+	<source type="pnx">
+		<valueSource>display/title</valueSource>
+	</source>
+	<action>
+		<routine code="CopyAsIs"/>
+		<targetFlag  flag="new"/>
+		<tagExists>false</tagExists>
+	</action>
+</rule>
+
+<rule version="1" rulegroup="sort_author">
+	<target>
+		<sectionTag>sort</sectionTag>
+		<targetTag>author</targetTag>
+	</target>
+	<source type="pnx">
+		<valueSource>display/creator</valueSource>
+	</source>
+	<action>
+		<routine code="CopyAsIs"/>
+		<targetFlag  flag="new"/>
+		<tagExists>false</tagExists>
+	</action>
+</rule>
+
+<rule version="1" changed="true" rulegroup="facets_creationdate">
+	<target>
+		<sectionTag>facets</sectionTag>
+		<targetTag>creationdate</targetTag>
+	</target>
+	<source>
+		<sourceTag>archdesc/did/unitdate</sourceTag>
+	</source>
+	<action>
+		<routine code="CopyAsIs"/>
+		<targetFlag  flag="new"/>
+	</action>
+</rule>
+
+<rule version="1" changed="true" rulegroup="facets_topic">
+	<target>
+		<sectionTag>facets</sectionTag>
+		<targetTag>topic</targetTag>
+	</target>
+	<source>
+		<sourceTag>archdesc/controlaccess//subject</sourceTag>
+	</source>
+	<action>
+		<routine code="CopyAsIs"/>
+		<targetFlag  flag="new"/>
+	</action>
+</rule>
+
+<rule version="1" changed="true" rulegroup="facets_collection">
+	<target>
+		<sectionTag>facets</sectionTag>
+		<targetTag>collection</targetTag>
+	</target>
+	<source>
+		<sourceTag>archdesc/did/repository/address/addressline</sourceTag>
+	</source>
+	<action>
+		<checkCondition>true</checkCondition>
+		<conditionTag code="81457759" flag="one" logic="true">archdesc/did/repository/address/addressline</conditionTag>
+		<routine code="WriteConstant">GRI Special Collections</routine>
+		<targetFlag  flag="new"/>
+		<tagExists>false</tagExists>
+	</action>
+</rule>
+
+<rule version="1" changed="true" rulegroup="facets_collection">
+	<target>
+		<sectionTag>facets</sectionTag>
+		<targetTag>collection</targetTag>
+	</target>
+	<source>
+		<sourceTag>archdesc/did/repository/address/addressline</sourceTag>
+	</source>
+	<action>
+		<checkCondition>true</checkCondition>
+		<conditionTag code="81457757" flag="one" logic="true">archdesc/did/repository/address/addressline</conditionTag>
+		<routine code="WriteConstant">GRI Institutional Archives</routine>
+		<targetFlag  flag="new"/>
+		<tagExists>false</tagExists>
+	</action>
+</rule>
+
+<rule version="1" changed="true" rulegroup="facets_prefilter">
+	<target>
+		<sectionTag>facets</sectionTag>
+		<targetTag>prefilter</targetTag>
+	</target>
+	<source type="pnx">
+		<valueSource>display/type</valueSource>
+	</source>
+	<action>
+		<routine code="UseMappingTable">pre_filter</routine>
+		<targetFlag  flag="new"/>
+	</action>
+</rule>
+
+<rule version="1" changed="true" rulegroup="facets_rsrctype">
+	<target>
+		<sectionTag>facets</sectionTag>
+		<targetTag>rsrctype</targetTag>
+	</target>
+	<source type="pnx">
+		<valueSource>display/type</valueSource>
+	</source>
+	<action>
+		<routine code="UseMappingTable">format_mean</routine>
+		<targetFlag  flag="new"/>
+	</action>
+</rule>
+
+<rule version="1" changed="true" rulegroup="facets_creatorcontrib">
+	<target>
+		<sectionTag>facets</sectionTag>
+		<targetTag>creatorcontrib</targetTag>
+	</target>
+	<source>
+		<sourceTag>archdesc/did/origination/persname</sourceTag>
+	</source>
+	<action>
+		<routine code="CopyAsIs"/>
+		<targetFlag  flag="merge"/>
+		<tagDelim endSpace="true">:</tagDelim>
+	</action>
+</rule>
+
+<rule version="1" changed="true" rulegroup="facets_creatorcontrib">
+	<target>
+		<sectionTag>facets</sectionTag>
+		<targetTag>creatorcontrib</targetTag>
+	</target>
+	<source>
+		<sourceTag>archdesc/did/origination/corpname</sourceTag>
+	</source>
+	<action>
+		<routine code="CopyAsIs"/>
+		<targetFlag  flag="merge"/>
+		<tagDelim endSpace="true">:</tagDelim>
+	</action>
+</rule>
+
+<rule version="1" changed="true" rulegroup="facets_creatorcontrib">
+	<target>
+		<sectionTag>facets</sectionTag>
+		<targetTag>creatorcontrib</targetTag>
+	</target>
+	<source>
+		<sourceTag>archdesc/did/origination/famname</sourceTag>
+	</source>
+	<action>
+		<routine code="CopyAsIs"/>
+		<targetFlag  flag="merge"/>
+		<tagDelim endSpace="true">:</tagDelim>
+	</action>
+</rule>
+
+<rule version="1" changed="true" rulegroup="facets_creatorcontrib">
+	<target>
+		<sectionTag>facets</sectionTag>
+		<targetTag>creatorcontrib</targetTag>
+	</target>
+	<source>
+		<sourceTag>archdesc/did/origination/name</sourceTag>
+	</source>
+	<action>
+		<routine code="CopyAsIs"/>
+		<targetFlag  flag="merge"/>
+		<tagDelim endSpace="true">:</tagDelim>
+	</action>
+</rule>
+
+<rule version="1" changed="true" rulegroup="facets_genre">
+	<target>
+		<sectionTag>facets</sectionTag>
+		<targetTag>genre</targetTag>
+	</target>
+	<source>
+		<sourceTag>archdesc/controlaccess//genreform</sourceTag>
+	</source>
+	<action>
+		<routine code="CopyAsIs"/>
+		<targetFlag  flag="new"/>
+	</action>
+</rule>
+
+<rule version="1" changed="true" rulegroup="dedup_t">
+	<target>
+		<sectionTag>dedup</sectionTag>
+		<targetTag>t</targetTag>
+	</target>
+	<source type="constant">
+		<valueSource>1</valueSource>
+	</source>
+	<action>
+		<routine code="CopyAsIs"/>
+		<targetFlag  flag="new"/>
+	</action>
+</rule>
+
+<rule version="1" changed="true" rulegroup="dedup_c5">
+	<target>
+		<sectionTag>dedup</sectionTag>
+		<targetTag>c5</targetTag>
+	</target>
+	<source>
+		<sourceTag>eadheader/eadid/@identifier</sourceTag>
+	</source>
+	<action>
+		<checkCondition>true</checkCondition>
+		<conditionTag code="84861730" flag="serial" logic="true">eadheader/eadid/@identifier</conditionTag>
+		<routine code="CopyAsIs"/>
+		<targetFlag  flag="new"/>
+	</action>
+</rule>
+
+<rule version="1" changed="true" rulegroup="dedup_f20">
+	<target>
+		<sectionTag>dedup</sectionTag>
+		<targetTag>f20</targetTag>
+	</target>
+	<source>
+		<sourceTag>eadheader/eadid/@identifier</sourceTag>
+	</source>
+	<action>
+		<checkCondition>true</checkCondition>
+		<conditionTag code="84861845" flag="serial" logic="true">eadheader/eadid/@identifier</conditionTag>
+		<routine code="CopyAsIs"/>
+		<targetFlag  flag="new"/>
+	</action>
+</rule>
+
+<rule version="1" changed="true" rulegroup="delivery_delcategory">
+	<target>
+		<sectionTag>delivery</sectionTag>
+		<targetTag>delcategory</targetTag>
+	</target>
+	<source type="constant">
+		<valueSource>other</valueSource>
+	</source>
+	<action>
+		<routine code="CopyAsIs"/>
+		<targetFlag  flag="new"/>
+	</action>
+</rule>
+
+<rule version="1" changed="true" rulegroup="addata_mis2">
+	<target>
+		<sectionTag>addata</sectionTag>
+		<targetTag>mis2</targetTag>
+	</target>
+	<source type="pnx">
+		<valueSource>control/sourcerecordid</valueSource>
+	</source>
+	<action>
+		<routine code="CopyAsIs"/>
+		<targetFlag  flag="merge"/>
+		<tagDelim endSpace="true">;</tagDelim>
+	</action>
+</rule>
+
+<rule version="1" changed="true" rulegroup="addata_mis2">
+	<target>
+		<sectionTag>addata</sectionTag>
+		<targetTag>mis2</targetTag>
+	</target>
+	<source>
+		<sourceTag>eadheader/eadid</sourceTag>
+	</source>
+	<action>
+		<routine code="SplitField">:;</routine>
+		<targetFlag  flag="merge"/>
+		<tagDelim endSpace="true">;</tagDelim>
+	</action>
+</rule>
+
+<rule version="1" changed="true" rulegroup="addata_lad01">
+	<target>
+		<sectionTag>addata</sectionTag>
+		<targetTag>lad01</targetTag>
+	</target>
+	<source>
+		<sourceTag>eadheader/eadid</sourceTag>
+	</source>
+	<action>
+		<routine code="CopyAsIs"/>
+		<targetFlag  flag="merge"/>
+		<tagDelim endSpace="true">;</tagDelim>
+	</action>
+</rule>
+
+<rule version="1" changed="true" rulegroup="search_searchscope">
+	<target>
+		<sectionTag>search</sectionTag>
+		<targetTag>searchscope</targetTag>
+	</target>
+	<source type="pnx">
+		<valueSource>search/searchscope</valueSource>
+	</source>
+	<action>
+		<routine code="CopyAsIs"/>
+		<targetFlag  flag="merge"/>
+		<tagDelim endSpace="true">;</tagDelim>
+	</action>
+</rule>
+
+<rule version="1" changed="true" rulegroup="search_searchscope">
+	<target>
+		<sectionTag>search</sectionTag>
+		<targetTag>searchscope</targetTag>
+	</target>
+	<source type="pnx">
+		<valueSource>search/ressearscope</valueSource>
+	</source>
+	<action>
+		<routine code="CopyAsIs"/>
+		<targetFlag  flag="merge"/>
+		<tagDelim endSpace="true">;</tagDelim>
+	</action>
+</rule>
+
+</ConversionRules>
