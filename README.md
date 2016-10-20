@@ -5,7 +5,7 @@ Title: Loading/Indexing Fulltext of EADs into Primo
 
 Created by:
 
-Ryan Edwards
+Ryan Edwards <br>
 Digital Access and Systems Librarian
 Getty Research Institute
 Los Angeles, CA
