@@ -17,9 +17,7 @@ Problem: We at the Getty Research Institute have over 400 published Encoded Arch
 
 Solution: We learned from Laura Morse, Director, Library Systems at Harvard University that Harvard found a way to index the fulltext of their finding aids in Primo, while deduping the EAD records with their Aleph records.  We recreated the dedupe normalization rules in our Primo Back Office (see rules.xml file attachment) to dedupe on the Alma MMSID manually injected into the identifier attribute, which we manually added to our ead header ead id elements.  Working with my former supervisor, Joseph Shubitowski, initially, I set up our complex xml file splitter and file splitter parameters.  Then, I proceeded to set up our data source, figure out the rest of our complex xml display, search, facet, link, and miscellaneous back-end Primo normalization rules, set up our load and delete pipes, and scope value that we added to our default search scope and view.
 
-Presentation: Here is a link to the streaming video of our WebEx session that we had on Monday, October 18, 2016: https://getty.webex.com/getty/ldr.php?RCID=8c9e8d67811b5db6d57a7002b9960f69 
-
-Our Process: We are copying our EADs manually to Primo and running a copy file load pipe, which runs to the DEDUP stage.
+Presentation: Here is a link to the streaming video of our WebEx session that we had on Monday, October 18, 2016, which describes our process: https://getty.webex.com/getty/ldr.php?RCID=8c9e8d67811b5db6d57a7002b9960f69 We are copying our EADs manually to Primo and running a copy file load pipe, which runs to the DEDUP stage.
  
 Currently, I follow this process for loading our EADs into Primo:
  
