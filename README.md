@@ -6,9 +6,9 @@ Title: Loading/Indexing Fulltext of EADs into Primo
 Created by:
 
 Ryan Edwards <br>
-Digital Access and Systems Librarian
-Getty Research Institute
-Los Angeles, CA
+Digital Access and Systems Librarian <br>
+Getty Research Institute <br>
+Los Angeles, CA <br>
 reedwards@getty.edu
 
 Date: October 20, 2016
@@ -44,8 +44,8 @@ Currently, I follow this process for loading our EADs into Primo:
 
 Special thanks go to my supervisor, Joe for helping me get this to work as well as several of my colleagues for their support:
 
-Joseph Shubitowski, Former Head, Library Information Systems
-Teresa Soleau, Head of Library Systems & Digital Collection Management
-Ruth Cuadra, Business Applications Administrator
-Joshua Gomez, Software Engineer Senior
+Joseph Shubitowski, Former Head, Library Information Systems <br>
+Teresa Soleau, Head of Library Systems & Digital Collection Management <br>
+Ruth Cuadra, Business Applications Administrator <br>
+Joshua Gomez, Software Engineer Senior <br>
 Lawrence Olliffe, Software Engineer
