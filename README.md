@@ -39,10 +39,11 @@
 > **Step 9**. In the Primo Back Office, execute the Indexing_and_Hotswapping process, which loads all the EADs into the Primo index and refreshes the Primo index in about 20-30 minutes.
 
 
+
 Special thanks go to my supervisor, Joe for helping me get this to work as well as several of my colleagues for their support:
 
-Joseph Shubitowski, Former Head, Library Information Systems <br>
-Teresa Soleau, Head of Library Systems & Digital Collection Management <br>
-Ruth Cuadra, Business Applications Administrator <br>
-Joshua Gomez, Software Engineer Senior <br>
-Lawrence Olliffe, Software Engineer
+> Joseph Shubitowski, Former Head, Library Information Systems <br>
+> Teresa Soleau, Head of Library Systems & Digital Collection Management <br>
+> Ruth Cuadra, Business Applications Administrator <br>
+> Joshua Gomez, Software Engineer Senior <br>
+> Lawrence Olliffe, Software Engineer
