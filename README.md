@@ -5,11 +5,11 @@
 
 **Created by**:
 
-> Ryan Edwards
-> Digital Access and Systems Librarian
-> Getty Research Institute
-> Los Angeles, CA
-> reedwards@getty.edu
+> Ryan Edwards<br/>
+> Digital Access and Systems Librarian<br/>
+> Getty Research Institute<br/>
+> Los Angeles, CA<br/>
+> reedwards@getty.edu<br/>
 
 **Date**: October 20, 2016
 
