@@ -19,7 +19,7 @@
 
 **Presentation**: Here is a link to the streaming video of our WebEx session that we had on Monday, October 18, 2016, which describes our process: https://getty.webex.com/getty/ldr.php?RCID=8c9e8d67811b5db6d57a7002b9960f69 We are copying our EADs manually to Primo and running a copy file load pipe, which runs to the DEDUP stage.
  
-Currently, I follow this process for loading our EADs into Primo:
+**Our Process**: Currently, I follow this process for loading our EADs into Primo:
  
 > 1. Receive notification from our Special Collections Cataloging Manager or our Institutional Archives Cataloger that new EADs have been added or updated. (We have a shared spreadsheet that they update via our Enterprise Box.com account, which lists all our accession numbers for our published finding aids and the corresponding Alma MMSID for the MARC21 descriptive records that we have in Alma.  We set this up this way, so we can keep track of new and updated EADs and also for future automated purposes, should we get our python script working to automatically inject our EAD IDs with identifier attributes, which contain the EADs corresponding Alma MMSIDs (all the EADs have an “identifier” attribute in the <eadid> element, which contains the MMSID from Alma for the corresponding MARC21 record; the identifier attribute is used by Primo to dedup the incoming EAD in the pipe with the Alma MARC21 record already published in Primo.
 
