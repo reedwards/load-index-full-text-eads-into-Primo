@@ -5,13 +5,13 @@
 
 **Created by**:
 
-Ryan Edwards <br>
-Digital Access and Systems Librarian <br>
-Getty Research Institute <br>
-Los Angeles, CA <br>
-reedwards@getty.edu
+> Ryan Edwards
+> Digital Access and Systems Librarian
+> Getty Research Institute
+> Los Angeles, CA
+> reedwards@getty.edu
 
-Date: October 20, 2016
+**Date**: October 20, 2016
 
 Problem: We at the Getty Research Institute have over 400 published Encoded Archival Description (EAD) finding aid records, which we maintain in our open-source ArchivesSpace system and present to our library patrons via our home-grown static Collection Inventories and Finding Aids pages on our website: http://archives2.getty.edu:8082/xtf/search?browse-creator=first;sort=creator Some of the EADs are quite lengthy and we wanted to be able to index all of this rich contextual information directly from within our own local Primo instance. For example, a search for the full-text, "Zürich life insurance", which appears at the bottom of the large Harold Szeemann papers finding aid: http://archives2.getty.edu:8082/xtf/view?query=Z%C3%BCrich+life+insurance&docId=ead%2F2011.M.30%2F2011.M.30.xml&chunk.id=0, yields this Primo search result: http://primo.getty.edu/primo_library/libweb/action/search.do?fn=search&ct=search&initialSearch=true&mode=Basic&tab=all_gri&indx=1&dum=true&srt=rank&vid=GRI&frbg=&vl%28freeText0%29=Z%C3%BCrich+life+insurance&scp.scps=scope%3A%28GETTY_EAD2%29%2Cscope%3A%28GETTY_NEWBOOKS%29%2Cscope%3A%28GETTY_ROSETTA%29%2Cscope%3A%28GETTY_ALMA%29&vl%2896033584UI1%29=all_items&vl%281UIStartWith0%29=contains&vl%2821781791UI0%29=any&vl%2821781791UI0%29=title&vl%2821781791UI0%29=any One can see that the full-text, "Zürich life insurance" is highlighted in the first search result, which is the "Harold Szeemann papers".
 
