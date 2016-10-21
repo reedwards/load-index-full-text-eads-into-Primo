@@ -1,9 +1,9 @@
 # load-index-full-text-eads-into-Primo
-Loading/Indexing Fulltext of EADs into Primo
+**Loading/Indexing Fulltext of EADs into Primo**
 
-Title: Loading/Indexing Fulltext of EADs into Primo
+**Title**: Loading/Indexing Fulltext of EADs into Primo
 
-Created by:
+**Created by**:
 
 Ryan Edwards <br>
 Digital Access and Systems Librarian <br>
